@@ -1,6 +1,6 @@
 # Arma 3 Discord Bot
 ## Description
-This bot is created to manage the Arma 3 browser on the windows host. 
+This bot is created to manage the Arma 3 server on the windows host. 
 It allows you to simplify routine processes when working with the server.
 
 ## List of commands
