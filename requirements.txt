@@ -1,0 +1,2 @@
+setuptools>=53.0.0
+discord>=1.0.1
