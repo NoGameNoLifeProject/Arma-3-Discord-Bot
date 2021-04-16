@@ -16,6 +16,7 @@ bot = commands.Bot(command_prefix='?', description="")
 BotStatusGame = "Server status: "
 A3serverPath = "C:\\A3Master"
 A3ServerConfigName = "config_server.cfg"
+A3ServerBatName = "start_arma3server.bat"
 DiscordManageRoleId = "12345" #all commands
 DiscordServerRestartRoleId = "12345" #restart command
 DiscordAdminRoleAccess = False #give access for admin permission
@@ -72,7 +73,7 @@ async def stop(ctx):
 async def start(ctx):
     if CanUseCommand(ctx):
         global ArmaCmdPid
-        process = subprocess.Popen([A3serverPath+'\\START_arma3server.bat'], creationflags=subprocess.CREATE_NEW_CONSOLE)
+        process = subprocess.Popen([A3serverPath+'\\'+A3ServerBatName], creationflags=subprocess.CREATE_NEW_CONSOLE)
         ArmaCmdPid = process.pid
         await sleep(5)
         await ctx.send("Server started")
@@ -87,7 +88,7 @@ async def restart(ctx):
             subprocess.call(["taskkill", "/F", "/IM", "arma3server_x64.exe"])
             ArmaCmdPid = 0
             await message.edit(content="Server stopped")
-        process = subprocess.Popen([A3serverPath+'\\START_arma3server.bat'], creationflags=subprocess.CREATE_NEW_CONSOLE)
+        process = subprocess.Popen([A3serverPath+'\\'+A3ServerBatName], creationflags=subprocess.CREATE_NEW_CONSOLE)
         ArmaCmdPid = process.pid
         await sleep(5)
         await message.edit(content="Server started")
@@ -200,6 +201,7 @@ async def help(ctx):
     embed.add_field(name="mplist", value=f"List of all missions (arg = Map name filter)")
     embed.add_field(name="setms", value=f"Set current mission (arg = Mission name), use mplist if needed")
     embed.add_field(name="msupload", value=f"Upload new mission and set it (Mission attachment needed), (arg = 'restart')")
+    embed.add_field(name="resetstatus", value=f"Reset bot status")
     await ctx.send(embed=embed)
 
 @bot.command()
